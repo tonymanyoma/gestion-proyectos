@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Proyecto;
 use Illuminate\Http\Request;
+use Auth;
+use DB;
 
 class ProyectoController extends Controller
 {
@@ -12,9 +14,30 @@ class ProyectoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // obtener proyectos
+
+        if ($request->wantsJson()) {
+
+            $id_compania = Auth::user()->id_compania;
+
+            try {
+
+                $proyectos = DB::table('proyectos as P')
+                    ->where('id_estado', 1)
+                    ->where('id_compania', $id_compania)
+                    ->orderBy('P.id', 'DESC')
+                    ->get();
+            } catch (QueryException $queryException) {
+
+                return $queryException->getMessage();
+            }
+
+            return $proyectos;
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -35,7 +58,35 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // crear proyectos
+
+        if ($request->wantsJson()) {
+
+            $this->validate($request, [
+                'nombre' => 'required',
+                'descripcion' => 'required'
+            ]);
+
+            $id_compania = Auth::user()->id_compania;
+
+            $proyecto = new Proyecto();
+
+            $proyecto->nombre = $request->nombre;
+            $proyecto->id_compania = $id_compania;
+            $proyecto->descripcion = $request->descripcion;
+            $proyecto->id_estado = 1;
+
+            $proyecto->save();
+
+
+            return response()->json([
+                'status' => 'Operacion concretada!',
+                'msg' => 'proyecto creado satisfactoriamente',
+                'code' => 1
+            ], 201);
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -67,9 +118,32 @@ class ProyectoController extends Controller
      * @param  \App\Proyecto  $proyecto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proyecto $proyecto)
+    public function update(Request $request, $id)
     {
-        //
+        if ($request->wantsJson()) {
+
+            $this->validate($request, [
+                'nombre' => 'required',
+                'descripcion' => 'required'
+            ]);
+
+
+            $proyecto = Proyecto::find($id);
+
+            $proyecto->nombre = $request->nombre;
+            $proyecto->descripcion = $request->descripcion;
+
+            $proyecto->save();
+
+
+            return response()->json([
+                'status' => 'Operacion concretada!',
+                'msg' => 'proyecto actualizado satisfactoriamente',
+                'code' => 1
+            ], 201);
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -78,8 +152,17 @@ class ProyectoController extends Controller
      * @param  \App\Proyecto  $proyecto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proyecto $proyecto)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->wantsJson()) {
+
+            $proyecto = Proyecto::find($id);
+            $proyecto->id_estado = 2;
+
+            $proyecto->save();
+            
+        } else {
+            return redirect('/');
+        }
     }
 }

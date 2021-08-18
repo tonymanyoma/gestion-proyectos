@@ -35,6 +35,7 @@ class AuthController extends Controller
         $user->id_role = 1;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->id_compania = $request->id_compania;
         $user->foto = 'admin.svg';
 
         $user->save();

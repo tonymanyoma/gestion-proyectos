@@ -56,29 +56,20 @@
       </vs-sidebar-item>
     </router-link>
 
-    <router-link :to="{name: 'usuarios'}" class="nav-link"  v-if="this.$auth.user().id_role == 1" >
-      <vs-sidebar-item index="2" icon="account_circle" >
+    <router-link :to="{name: 'proyectos'}" class="nav-link"  >
+      <vs-sidebar-item index="2" icon="import_contacts" >
+        Proyectos
+      </vs-sidebar-item>
+    </router-link>
+
+    <router-link :to="{name: 'usuarios'}" class="nav-link" >
+      <vs-sidebar-item index="3" icon="account_circle" >
         Usuarios
       </vs-sidebar-item>
     </router-link>
 
-    <router-link :to="{name: 'cursos'}" class="nav-link"  v-if="this.$auth.user().id_role == 1" >
-      <vs-sidebar-item index="3" icon="import_contacts" >
-        Cursos
-      </vs-sidebar-item>
-    </router-link>
-
-    <router-link :to="{name: 'matricula'}" class="nav-link">
-      <vs-sidebar-item index="4" icon="library_books" v-if="this.$auth.user().id_role == 1">
-        Matricular cursos
-      </vs-sidebar-item>
-      <vs-sidebar-item index="4" icon="star_half" v-else>
-        Cursos matriculados
-      </vs-sidebar-item>
-    </router-link>
-
     <router-link :to="{name: 'configuracion'}" class="nav-link" >
-      <vs-sidebar-item index="5" icon="settings" >
+      <vs-sidebar-item index="4" icon="settings" >
         Configuración
       </vs-sidebar-item>
     </router-link>

@@ -119,8 +119,6 @@ class UsuarioController extends Controller
 
                     if(($request->id_role == 1) ){
                         $usuario->foto = 'admin.svg';
-                    }else{
-                        $usuario->foto = 'alumno.svg';
                     }
 
                     $usuario->save();
