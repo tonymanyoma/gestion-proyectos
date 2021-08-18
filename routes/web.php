@@ -38,13 +38,9 @@ Route::prefix('auth')->group(function () {
         Route::resource('usuarios', 'UsuarioController');
         Route::post('searchUsuario', 'UsuarioController@searchUsuario');
 
-        //Cursos
-        Route::resource('cursos', 'CursoController');
+        //Proyectos
+        Route::resource('proyectos', 'ProyectoController');
 
-        //Matricula
-        Route::resource('matricula', 'MatriculaCursoController');
-        Route::post('infomatricula', 'MatriculaCursoController@infomatricula');
-        Route::post('matriculaUpdate', 'MatriculaCursoController@matriculaUpdate');
 
         //Tipo documento
         Route::resource('documentos', 'TipoDocumentoController');

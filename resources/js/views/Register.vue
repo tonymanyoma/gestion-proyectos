@@ -18,8 +18,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-info border-info"><i class="fa fa-id-card"></i></span>
                             </div>
-                            <select class="custom-select" v-model="id_tipo" required>
-                                <option value="0" disabled>Seleccione</option>
+                            <select class="custom-select"  v-model="id_tipo" required>
+                                <option value="" disabled>Tipo de documento</option>
                                 <option v-for="documento in arraydocumentos" :key="documento.id" :value="documento.id" >{{documento.nombre}}</option>
                                 </select>
                             </div>
@@ -67,7 +67,7 @@
                                 <span class="input-group-text bg-info border-info"><i class="fa fa-briefcase"></i></span>
                             </div>
                             <select class="custom-select" v-model="id_compania" required>
-                                <option value="0" disabled>Seleccione</option>
+                                <option value="" disabled>Compañia</option>
                                 <option v-for="compania in arraycompanias" :key="compania.id" :value="compania.id" >{{compania.nombre}}</option>
                                 </select>
                             </div>
@@ -167,7 +167,6 @@
                 axios.get(url)
                 .then((response) => {
                     me.arraydocumentos = response.data.documentos;
-                        console.log(me.arraydocumentos)
                 })
                 .catch(function (error) {
                     // handle error
@@ -211,7 +210,7 @@
 
             this.$swal(
                     'Creado',
-                    'Registro con éxito',
+                    'Registro exitoso',
                     'success'
                 )
 
