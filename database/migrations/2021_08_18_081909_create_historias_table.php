@@ -18,7 +18,10 @@ class CreateHistoriasTable extends Migration
             $table->string('nombre');
             $table->unsignedInteger('id_proyecto')->nullable();
             $table->foreign('id_proyecto')->references('id')->on('proyectos');
+            $table->unsignedInteger('id_estado')->nullable();
+            $table->foreign('id_estado')->references('id')->on('estados');
             $table->longText('comentarios');
+            $table->timestamps();
         });
     }
 

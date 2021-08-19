@@ -8,9 +8,9 @@
             <!-- small box -->
             <div class="small-box box-inverse bg-success-gradient">
               <div class="inner">
-                <h3>{{ this.TotalCursos }}</h3>
+                <h3>{{ this.TotalProyectos }}</h3>
 
-                <p>TOTAL CURSOS</p>
+                <p>TOTAL PROYECTOS</p>
               </div>
               <div class="icon text-white">
                 <i class="fa fa-book"></i>
@@ -18,33 +18,6 @@
             </div>
           </div>
 
-          <div class="col-xl-4 col-md-4 col-4">
-            <!-- small box -->
-            <div class="small-box box-inverse bg-primary-gradient-animet">
-              <div class="inner">
-                <h3>{{ this.TotalUsuarios }}</h3>
-
-                <p>TOTAL USUARIOS</p>
-              </div>
-              <div class="icon text-white">
-                <i class="fa fa-user"></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-4 col-md-4 col-4">
-            <!-- small box -->
-            <div class="small-box box-inverse bg-info-gradient-animet">
-              <div class="inner">
-                <h3>{{ this.TotalMatriculas }}</h3>
-
-                <p>TOTAL MATRICULAS</p>
-              </div>
-              <div class="icon text-white">
-                <i class="fa fa-address-book"></i>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>
@@ -59,9 +32,8 @@ export default {
 
   data() {
     return {
-      TotalCursos: 0,
-      TotalUsuarios: 0,
-      TotalMatriculas: 0,
+      TotalProyectos: 0,
+
     };
   },
 
@@ -75,9 +47,8 @@ export default {
         method: "get",
       })
         .then(function (response) {
-          me.TotalCursos = response.data.TotalCursos;
-          me.TotalUsuarios = response.data.TotalUsuarios;
-          me.TotalMatriculas = response.data.TotalMatriculas;
+          me.TotalProyectos = response.data.TotalProyectos;
+
         })
         .catch(function (error) {
           // handle error

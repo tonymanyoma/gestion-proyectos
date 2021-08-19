@@ -18,6 +18,8 @@ class CreateTicketsTable extends Migration
             $table->string('nombre');
             $table->unsignedInteger('id_historia')->nullable();
             $table->foreign('id_historia')->references('id')->on('historias');
+            $table->unsignedInteger('id_estado')->nullable();
+            $table->foreign('id_estado')->references('id')->on('estados');
             $table->unsignedInteger('id_estado_ticket')->nullable();
             $table->foreign('id_estado_ticket')->references('id')->on('estado_tickets');
             $table->longText('comentarios');

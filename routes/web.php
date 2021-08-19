@@ -41,6 +41,17 @@ Route::prefix('auth')->group(function () {
         //Proyectos
         Route::resource('proyectos', 'ProyectoController');
 
+        //Historias
+        Route::post('getHistorias', 'HistoriaController@getHistorias');
+        Route::resource('historias', 'HistoriaController');
+
+        //Tickets
+        Route::post('getTickets', 'TicketController@getTickets');
+        Route::resource('tickets', 'TicketController');
+        Route::post('updateTickets', 'TicketController@updateTickets');
+
+        //Estado tickets
+        Route::resource('estados', 'EstadoTicketController');
 
         //Tipo documento
         Route::resource('documentos', 'TipoDocumentoController');

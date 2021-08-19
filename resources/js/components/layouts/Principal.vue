@@ -62,14 +62,9 @@
       </vs-sidebar-item>
     </router-link>
 
-    <router-link :to="{name: 'usuarios'}" class="nav-link" >
-      <vs-sidebar-item index="3" icon="account_circle" >
-        Usuarios
-      </vs-sidebar-item>
-    </router-link>
 
     <router-link :to="{name: 'configuracion'}" class="nav-link" >
-      <vs-sidebar-item index="4" icon="settings" >
+      <vs-sidebar-item index="3" icon="settings" >
         Configuración
       </vs-sidebar-item>
     </router-link>
