@@ -12,279 +12,282 @@
       </div>
 
       <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <form method="POST" v-on:submit.prevent="updateUsuario">
+              <div class="card card-info">
+                <div class="card-header">
+                  <h3 class="card-title">{{ this.nombre }}</h3>
+                </div>
+                <div class="card-body">
+                  <div
+                    class="box card-inverse bg-img"
+                    style="
+                      background-image: url(../images/proyecto.jpg);
+                      padding-top: 150px;
+                    "
+                  >
+                    <div
+                      class="flexbox align-items-center px-20"
+                      data-overlay="4"
+                    >
+                      <div class="flexbox align-items-center mr-auto">
+                        <a href="#"> </a>
+                        <div class="pl-10 d-none d-md-block"></div>
+                      </div>
+                    </div>
+                  </div>
 
-            <div class="row">
-                <div class="col-md-12">
-            <form  method="POST" v-on:submit.prevent="updateUsuario" >
-                <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title">{{this.nombre}}</h3>
-              </div>
-              <div class="card-body">
-
-                 <div class="box card-inverse bg-img" style="background-image: url(../images/proyecto.jpg); padding-top: 150px">
-
-              <div class="flexbox align-items-center px-20" data-overlay="4">
-                <div class="flexbox align-items-center mr-auto">
-                  <a href="#" >
-                    
-                  </a>
-                  <div class="pl-10 d-none d-md-block">
-
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p class="comentarios-historias">
+                        {{ this.descripcion }}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-
+                <!-- /.card-body -->
               </div>
-            </div>
-
-                
-
-          <div class="row">
-              <div class="col-md-12">
-                  <p class="comentarios-historias">{{ this.descripcion}}</p>
-              </div>
-            </div>
-
-
-              </div>
-        
-
-              <!-- /.card-body -->
-            </div>
             </form>
-            </div>
-
-
-
-            </div>
-
-        </section>
-
-       <vs-row vs-justify="center">
-            <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="3" v-for="historia in Historias" v-bind:key="historia.id" class="cards-historias">
-            <vs-card class="cardx">
-                <div slot="header">
-                <h3>
-                    Nombre de la historia: {{ historia.nombre }}
-                </h3>
-                </div>
-                <div slot="media">
-                <img  />
-                </div>
-                <div>
-                    <span class="comentarios-historias">Comentarios: {{ historia.comentarios}}</span>
-                </div>
-  
-                <br>
-
-                <div slot="footer">
-                <vs-row vs-justify="flex-end">
-                    <vs-button color="primary" icon="sticky_note_2" v-on:click.prevent="getTickets(historia.id)"></vs-button>
-                    <vs-button color="warning" icon="edit" v-on:click.prevent="editHistorias(historia)"></vs-button>
-                    <vs-button color="danger"  icon="delete" v-on:click.prevent="deleteHistorias(historia)"></vs-button>
-                </vs-row>
-                </div>
-            </vs-card>
-            </vs-col>
-   
-  </vs-row>
-
-    <div class="adminActions" data-target="#create" data-toggle="modal">
-            <input type="checkbox" name="adminToggle" class="adminToggle" />
-            <a class="adminButton" href="#!" ><i class="fa fa-plus"></i></a>
+          </div>
         </div>
+      </section>
 
+      <vs-row vs-justify="center">
+        <vs-col
+          type="flex"
+          vs-justify="center"
+          vs-align="center"
+          vs-w="3"
+          v-for="historia in Historias"
+          v-bind:key="historia.id"
+          class="cards-historias"
+        >
+          <vs-card class="cardx">
+            <div slot="header">
+              <h3>Nombre de la historia: {{ historia.nombre }}</h3>
+            </div>
+            <div slot="media">
+              <img />
+            </div>
+            <div>
+              <span class="comentarios-historias"
+                >Comentarios: {{ historia.comentarios }}</span
+              >
+            </div>
+
+            <br />
+
+            <div slot="footer">
+              <vs-row vs-justify="flex-end">
+                <vs-button
+                  color="primary"
+                  icon="sticky_note_2"
+                  v-on:click.prevent="getTickets(historia.id)"
+                ></vs-button>
+                <vs-button
+                  color="warning"
+                  icon="edit"
+                  v-on:click.prevent="editHistorias(historia)"
+                ></vs-button>
+                <vs-button
+                  color="danger"
+                  icon="delete"
+                  v-on:click.prevent="deleteHistorias(historia)"
+                ></vs-button>
+              </vs-row>
+            </div>
+          </vs-card>
+        </vs-col>
+      </vs-row>
+
+      <div class="adminActions" data-target="#create" data-toggle="modal">
+        <input type="checkbox" name="adminToggle" class="adminToggle" />
+        <a class="adminButton" href="#!"><i class="fa fa-plus"></i></a>
+      </div>
     </div>
 
-  
-      <!-- Modal -->
-      <div
-        class="modal fade bs-example-modal-lg"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="myLargeModalLabel"
-        aria-hidden="true"
-        style="display: none"
-        id="createtickets"
-      >
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header bg-info">
-              <h5 class="modal-title">Tickets</h5>
-              <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-              </button>
+    <!-- Modal -->
+    <div
+      class="modal fade bs-example-modal-lg"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+      style="display: none"
+      id="createtickets"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-info">
+            <h5 class="modal-title">Tickets</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <h2>Crear tickets</h2>
+              </div>
             </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <h2>Crear tickets</h2>
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="col s12">
-                  <div class="form-group row">
-                    <div class="col-md-4">
-                      <label for="nombre">Nombre Ticket</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"
-                            ><i class="fa fa-user"></i
-                          ></span>
-                        </div>
-                        <input
-                          id="nombre"
-                          type="text"
-                          class="form-control"
-                          v-model="newnombreticket"
-                          required
-                        />
+            <div class="row">
+              <div class="col s12">
+                <div class="form-group row">
+                  <div class="col-md-4">
+                    <label for="nombre">Nombre Ticket</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="fa fa-user"></i
+                        ></span>
                       </div>
-                      <!-- /.input group -->
+                      <input
+                        id="nombre"
+                        type="text"
+                        class="form-control"
+                        v-model="newnombreticket"
+                        required
+                      />
                     </div>
+                    <!-- /.input group -->
+                  </div>
 
-                    <div class="col-md-6">
-                      <label for="comentarios">Comentarios</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"
-                            ><i class="fa fa-id-card"></i
-                          ></span>
-                        </div>
-                        <textarea
-                          id="comentarios"
-                          type="text"
-                          class="form-control"
-                          v-model="newcomentariosticket"
-                          required
-                        />
+                  <div class="col-md-6">
+                    <label for="comentarios">Comentarios</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="fa fa-id-card"></i
+                        ></span>
                       </div>
-                      <!-- /.input group -->
+                      <textarea
+                        id="comentarios"
+                        type="text"
+                        class="form-control"
+                        v-model="newcomentariosticket"
+                        required
+                      />
                     </div>
-                    <div class="col-md-2" style="margin-top:15px">
-                       <button
-                        type="submit"
-                        class="
-                          btn btn-bold btn-pure btn-success
-                          float-right
-                          btn-rounded
-                        "
-                        @click="createTickets()"
-                      >
-                        Crear
-                      </button>
-                    </div>
-                  
+                    <!-- /.input group -->
+                  </div>
+                  <div class="col-md-2" style="margin-top: 15px">
+                    <button
+                      type="submit"
+                      class="
+                        btn btn-bold btn-pure btn-success
+                        float-right
+                        btn-rounded
+                      "
+                      @click="createTickets()"
+                    >
+                      Crear
+                    </button>
                   </div>
                 </div>
               </div>
+            </div>
 
+            <div class="row">
+              <div class="col s12">
+                <h2>Tickets de la historia</h2>
+              </div>
+            </div>
 
-                
-                    <div class="row">
-                    <div class="col s12">
-                      
-                      <h2>Tickets de la historia</h2>
-                     
-                    </div>
-                  </div>
-                  
-                                 
-                     <div class="row">
-                <div class="col s12">
-                  <vs-table
-                    @search="handleSearch"
-                    @change-page="handleChangePage"
-                    @sort="handleSort"
-                    v-model="selectedTicket"
-                    pagination
-                    max-items="5"
-                    search
-                    :data="Tickets"
-                  >
-                    <template slot="header"> </template>
-                    <template slot="thead">
-                      <vs-th sort-key="Nombre">
-                        <p class="p-th">Nombre</p>
-                      </vs-th>
-                      <vs-th sort-key="intensidad">
-                        <p class="p-th">Comentarios</p>
-                      </vs-th>
+            <div class="row">
+              <div class="col s12">
+                <vs-table
+                  @search="handleSearch"
+                  @change-page="handleChangePage"
+                  @sort="handleSort"
+                  v-model="selectedTicket"
+                  pagination
+                  max-items="5"
+                  search
+                  :data="Tickets"
+                >
+                  <template slot="header"> </template>
+                  <template slot="thead">
+                    <vs-th sort-key="Nombre">
+                      <p class="p-th">Nombre</p>
+                    </vs-th>
+                    <vs-th sort-key="intensidad">
+                      <p class="p-th">Comentarios</p>
+                    </vs-th>
 
-                      <vs-th sort-key="accion">
-                        <p class="p-th">Estado</p>
-                      </vs-th>
-                    </template>
+                    <vs-th sort-key="accion">
+                      <p class="p-th">Estado</p>
+                    </vs-th>
+                  </template>
 
-                    <template slot-scope="{ data }">
-                      <vs-tr
-                        :data="tr"
-                        :key="indextr"
-                        v-for="(tr, indextr) in data"
-                      >
-                        <vs-td :data="data[indextr].nombre" class="table-td">
-                          {{ data[indextr].nombre }}
-                        </vs-td>
+                  <template slot-scope="{ data }">
+                    <vs-tr
+                      :data="tr"
+                      :key="indextr"
+                      v-for="(tr, indextr) in data"
+                    >
+                      <vs-td :data="data[indextr].nombre" class="table-td">
+                        {{ data[indextr].nombre }}
+                      </vs-td>
 
-                        <vs-td
-                          :data="data[indextr].comentarios"
-                          class="table-td"
-                        >
-                          {{ data[indextr].comentarios }}
-                        </vs-td>
+                      <vs-td :data="data[indextr].comentarios" class="table-td">
+                        {{ data[indextr].comentarios }}
+                      </vs-td>
 
-                        <vs-td
-                          :data="data[indextr].estado"
-                          class="table-td"
-                        >
-                          {{ data[indextr].estado }}
-                          <template slot="edit">
-                          
-
-
-                      <div class="form-group">
-                        <div class="input-group mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-info border-info"><i class="fa fa-briefcase"></i></span>
-                            </div>
-                            <select class="custom-select" v-model="estado" required @change="updateTicket">
+                      <vs-td :data="data[indextr].estado" class="table-td">
+                        {{ data[indextr].estado }}
+                        <template slot="edit">
+                          <div class="form-group">
+                            <div class="input-group mb-4">
+                              <div class="input-group-prepend">
+                                <span
+                                  class="input-group-text bg-info border-info"
+                                  ><i class="fa fa-briefcase"></i
+                                ></span>
+                              </div>
+                              <select
+                                class="custom-select"
+                                v-model="estado"
+                                required
+                                @change="updateTicket"
+                              >
                                 <option value="" disabled>Estado</option>
-                                <option v-for="estado in Estados" :key="estado.id" :value="estado.nombre" >{{estado.nombre}}</option>
-                                </select>
+                                <option
+                                  v-for="estado in Estados"
+                                  :key="estado.id"
+                                  :value="estado.nombre"
+                                >
+                                  {{ estado.nombre }}
+                                </option>
+                              </select>
                             </div>
                           </div>
+                        </template>
+                      </vs-td>
 
-                          </template>
-                        </vs-td>
-
-                        <vs-td>
-
-                        </vs-td>
-                      </vs-tr>
-                    </template>
-                  </vs-table>
-                </div>
+                      <vs-td> </vs-td>
+                    </vs-tr>
+                  </template>
+                </vs-table>
               </div>
- 
             </div>
+          </div>
 
-            <div class="modal-footer modal-footer-uniform">
-              <button
-                type="button"
-                class="btn btn-bold btn-pure btn-secondary btn-rounded"
-                data-dismiss="modal"
-              >
-                Cerrar
-              </button>
-
-            </div>
+          <div class="modal-footer modal-footer-uniform">
+            <button
+              type="button"
+              class="btn btn-bold btn-pure btn-secondary btn-rounded"
+              data-dismiss="modal"
+            >
+              Cerrar
+            </button>
           </div>
         </div>
       </div>
-      <!-- /.modal -->
- 
+    </div>
+    <!-- /.modal -->
 
     <form method="POST" v-on:submit.prevent="createHistorias">
       <!-- Modal -->
@@ -480,7 +483,7 @@ export default {
     this.getEstados();
   },
 
-  props:['id', 'nombre', 'descripcion'],
+  props: ["id", "nombre", "descripcion"],
 
   data() {
     return {
@@ -492,22 +495,21 @@ export default {
       newcomentarios: "",
       newnombreticket: "",
       newcomentariosticket: "",
-      id_historia: '',
-      estado: '',
-      id_ticket: '',
+      id_historia: "",
+      estado: "",
+      id_ticket: "",
       fillhistorias: {
         id: "",
         nombre: "",
         comentario: "",
       },
-    estados: []
+      estados: [],
     };
   },
 
   mixins: [misMixins],
 
   methods: {
-
     handleSearch(searching) {
       let _print = `The user searched for: ${searching}\n`;
       this.$refs.pre.appendChild(document.createTextNode(_print));
@@ -520,7 +522,7 @@ export default {
       let _print = `the user ordered: ${key} ${active}\n`;
       this.$refs.pre.appendChild(document.createTextNode(_print));
     },
-    
+
     getHistorias() {
       this.spinnerOpen();
 
@@ -528,13 +530,12 @@ export default {
       this.$http({
         url: "auth/getHistorias",
         method: "POST",
-        data:{
-            id_proyecto: this.id
-        }
+        data: {
+          id_proyecto: this.id,
+        },
       })
         .then(function (response) {
           (me.Historias = response.data), me.spinnerClose();
-          
         })
         .catch(function (error) {
           // handle error
@@ -543,14 +544,14 @@ export default {
     },
 
     getTickets(id_historia) {
-      this.id_historia = id_historia
+      this.id_historia = id_historia;
       let me = this;
       this.$http({
         url: "auth/getTickets",
         method: "POST",
-        data:{
-            id_historia: id_historia
-        }
+        data: {
+          id_historia: id_historia,
+        },
       })
         .then(function (response) {
           (me.Tickets = response.data), me.spinnerClose();
@@ -563,7 +564,6 @@ export default {
     },
 
     getEstados() {
-
       let me = this;
       this.$http({
         url: "auth/estados",
@@ -578,8 +578,7 @@ export default {
         });
     },
 
-    createTickets(){
-
+    createTickets() {
       this.loadingOpen();
 
       let me = this;
@@ -590,7 +589,7 @@ export default {
         data: {
           nombre: this.newnombreticket,
           comentarios: this.newcomentariosticket,
-          id_historia: this.id_historia
+          id_historia: this.id_historia,
         },
       })
         .then((response) => {
@@ -598,29 +597,22 @@ export default {
           me.$swal("Creado", "ticket creado con éxito.", "success");
           me.newnombreticket = "";
           me.newcomentariosticket = "";
-
         })
-        .catch((error) => {
-          
-        });
-
+        .catch((error) => {});
     },
 
+    updateTicket() {
+      this.loadingOpen();
 
-    updateTicket(){
+      var estado;
 
-
-        this.loadingOpen();
-
-        var estado;
-
-        if( this.estado == 'Activo'){
-            estado = 1;
-        }else if( this.estado == 'En proceso' ){
-          estado = 2;
-        }else if( this.estado == 'Finalizado' ){
-          estado = 3;
-        }
+      if (this.estado == "Activo") {
+        estado = 1;
+      } else if (this.estado == "En proceso") {
+        estado = 2;
+      } else if (this.estado == "Finalizado") {
+        estado = 3;
+      }
 
       let me = this;
       this.$http({
@@ -628,15 +620,19 @@ export default {
         method: "POST",
         data: {
           estado: estado,
-          id_ticket: this.selectedTicket.id
+          id_ticket: this.selectedTicket.id,
         },
       })
         .then((response) => {
           this.getTickets(this.id_historia);
-          this.estado = '';
+          this.estado = "";
           this.errors = [];
 
-          this.$swal("Actualizado", "estado del ticket actualizado con éxito.", "success");
+          this.$swal(
+            "Actualizado",
+            "estado del ticket actualizado con éxito.",
+            "success"
+          );
         })
         .catch((error) => {
           this.errors = errors.response.data;
@@ -672,7 +668,11 @@ export default {
             $("body").removeClass("modal-open");
             $(".modal-backdrop").remove();
           }
-          this.$swal("Actualizado", "historia actualizada con éxito.", "success");
+          this.$swal(
+            "Actualizado",
+            "historia actualizada con éxito.",
+            "success"
+          );
         })
         .catch((error) => {
           this.errors = errors.response.data;
@@ -688,7 +688,7 @@ export default {
         data: {
           nombre: this.newnombre,
           comentarios: this.newcomentarios,
-          id_proyecto: this.id
+          id_proyecto: this.id,
         },
       })
         .then((response) => {
@@ -782,92 +782,100 @@ td {
 /* Floating button */
 .adminActions {
   position: fixed;
-  bottom: 35px; right: 35px;
+  bottom: 35px;
+  right: 35px;
 }
 
-  .adminButton {
-    height: 60px;
-    width: 60px;
-    background-color: #31b1dd;
-    border-radius: 50%;
-    display: block;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
+.adminButton {
+  height: 60px;
+  width: 60px;
+  background-color: #31b1dd;
+  border-radius: 50%;
+  display: block;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
 
-    .adminButton i {
-      font-size: 22px;
-    }
+.adminButton i {
+  font-size: 22px;
+}
 
-  .adminButtons {
-    position: absolute;
-    width: 100%;
-    bottom: 120%;
-    text-align: center;
-  }
+.adminButtons {
+  position: absolute;
+  width: 100%;
+  bottom: 120%;
+  text-align: center;
+}
 
-    .adminButtons a {
-      display: block;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      text-decoration: none;
-      margin: 10px auto 0;
-      line-height: 1.15;
-      color: #fff;
-      opacity: 0;
-      visibility: hidden;
-      position: relative;
-      box-shadow: 0 0 5px 1px rgba(51, 51, 51, .3);
-    }
+.adminButtons a {
+  display: block;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  text-decoration: none;
+  margin: 10px auto 0;
+  line-height: 1.15;
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  position: relative;
+  box-shadow: 0 0 5px 1px rgba(51, 51, 51, 0.3);
+}
 
-      .adminButtons a:hover {
-        transform: scale(1.05);
-      }
+.adminButtons a:hover {
+  transform: scale(1.05);
+}
 
-      .adminButtons a:nth-child(1) {background-color: #2b3f7f; transition: opacity .2s ease-in-out .3s, transform .15s ease-in-out;}
-      .adminButtons a:nth-child(2) {background-color: #fbb03b; transition: opacity .2s ease-in-out .25s, transform .15s ease-in-out;}
-     
+.adminButtons a:nth-child(1) {
+  background-color: #2b3f7f;
+  transition: opacity 0.2s ease-in-out 0.3s, transform 0.15s ease-in-out;
+}
+.adminButtons a:nth-child(2) {
+  background-color: #fbb03b;
+  transition: opacity 0.2s ease-in-out 0.25s, transform 0.15s ease-in-out;
+}
 
-      .adminActions a i {
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-      }
+.adminActions a i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  .adminToggle {
-    -webkit-appearance: none;
-    position: absolute;
-    border-radius: 50%;
-    top: 0; left: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    z-index: 2;
-    transition: box-shadow .2s ease-in-out;
-    box-shadow: 0 3px 5px 1px rgba(51, 51, 51, .3);
-  }
+.adminToggle {
+  -webkit-appearance: none;
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  z-index: 2;
+  transition: box-shadow 0.2s ease-in-out;
+  box-shadow: 0 3px 5px 1px rgba(51, 51, 51, 0.3);
+}
 
-    .adminToggle:hover {
-      box-shadow: 0 3px 6px 2px rgba(51, 51, 51, .3);
-    }
+.adminToggle:hover {
+  box-shadow: 0 3px 6px 2px rgba(51, 51, 51, 0.3);
+}
 
-    .adminToggle:checked ~ .adminButtons a {
-      opacity: 1;
-      visibility: visible;
-    }
+.adminToggle:checked ~ .adminButtons a {
+  opacity: 1;
+  visibility: visible;
+}
 
- .cards-historias{
-   margin-right: 15px;
- }   
+.cards-historias {
+  margin-right: 15px;
+}
 
- .comentarios-historias{
-   font-size: 15px;
- }
+.comentarios-historias {
+  font-size: 15px;
+}
 </style>

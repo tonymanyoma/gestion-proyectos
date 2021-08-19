@@ -13,14 +13,12 @@ import { misMixins } from "../mixins.js";
 //import dashboards
 import dashboardAdmin from "./dashboards/dashboardAdmin.vue";
 
-
 export default {
   created: function () {
     this.$emit("update:layout", LayoutDefault);
   },
   components: {
     dashboardAdmin,
-
   },
   data() {
     return {

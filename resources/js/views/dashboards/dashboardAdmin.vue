@@ -17,7 +17,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </section>
     </div>
@@ -33,7 +32,6 @@ export default {
   data() {
     return {
       TotalProyectos: 0,
-
     };
   },
 
@@ -48,7 +46,6 @@ export default {
       })
         .then(function (response) {
           me.TotalProyectos = response.data.TotalProyectos;
-
         })
         .catch(function (error) {
           // handle error

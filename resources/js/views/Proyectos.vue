@@ -75,14 +75,23 @@
                         </vs-td>
 
                         <vs-td>
-                         <router-link :to="{name: 'historias', params: {id: data[indextr].id, nombre: data[indextr].nombre, descripcion: data[indextr].descripcion}}">
-                        <vs-button
-                            radius
-                            color="primary"
-                            color-text="rgb(50,50,50)"
-                            icon="description"
-                          ></vs-button>
-                         </router-link>
+                          <router-link
+                            :to="{
+                              name: 'historias',
+                              params: {
+                                id: data[indextr].id,
+                                nombre: data[indextr].nombre,
+                                descripcion: data[indextr].descripcion,
+                              },
+                            }"
+                          >
+                            <vs-button
+                              radius
+                              color="primary"
+                              color-text="rgb(50,50,50)"
+                              icon="description"
+                            ></vs-button>
+                          </router-link>
                           &nbsp;&nbsp;
                           <vs-button
                             radius
@@ -97,7 +106,7 @@
                             color="danger"
                             color-text="rgb(50,50,50)"
                             icon="delete"
-                           v-on:click.prevent="deleteProyectos(data[indextr])"
+                            v-on:click.prevent="deleteProyectos(data[indextr])"
                           ></vs-button>
                         </vs-td>
                       </vs-tr>
@@ -381,7 +390,11 @@ export default {
             $("body").removeClass("modal-open");
             $(".modal-backdrop").remove();
           }
-          this.$swal("Actualizado", "proyecto actualizado con éxito.", "success");
+          this.$swal(
+            "Actualizado",
+            "proyecto actualizado con éxito.",
+            "success"
+          );
         })
         .catch((error) => {
           this.errors = errors.response.data;

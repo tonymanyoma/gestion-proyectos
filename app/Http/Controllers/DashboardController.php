@@ -31,8 +31,8 @@ class DashboardController extends Controller
             $id_compania = Auth::user()->id_compania;
 
             $TotalProyectos = Proyecto::where('id_estado', '=', 1)
-                                ->where('id_compania', $id_compania)
-                                ->count();
+                ->where('id_compania', $id_compania)
+                ->count();
 
             return response()->json([
                 'status' => 'success',
@@ -53,11 +53,11 @@ class DashboardController extends Controller
 
 
             $TotalCursos = DB::table('matricula_cursos as M')
-                        ->join('detalle_matricula_cursos as D', 'D.id_matricula', '=', 'M.id')
-                        ->where('M.id_usuario', '=', $id_user)
-                        ->where('M.id_estado', '=', 1)
-                        ->count();
-                        
+                ->join('detalle_matricula_cursos as D', 'D.id_matricula', '=', 'M.id')
+                ->where('M.id_usuario', '=', $id_user)
+                ->where('M.id_estado', '=', 1)
+                ->count();
+
 
 
             return $TotalCursos;

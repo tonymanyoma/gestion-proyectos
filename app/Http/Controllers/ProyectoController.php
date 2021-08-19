@@ -160,7 +160,6 @@ class ProyectoController extends Controller
             $proyecto->id_estado = 2;
 
             $proyecto->save();
-            
         } else {
             return redirect('/');
         }
