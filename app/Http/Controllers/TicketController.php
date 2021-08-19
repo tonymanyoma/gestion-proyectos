@@ -20,9 +20,9 @@ class TicketController extends Controller
 
     public function getTickets(Request $request)
     {
-         // obtener tickets
+        // obtener tickets
 
-         if ($request->wantsJson()) {
+        if ($request->wantsJson()) {
 
 
             try {

@@ -14,13 +14,13 @@ class EstadoTicketController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->wantsJson()){
+        if ($request->wantsJson()) {
 
             $estados = Estado_ticket::select('id', 'nombre')
-            ->orderBy('id', 'asc')->get();
+                ->orderBy('id', 'asc')->get();
 
             return ['estados' => $estados];
-        }else{
+        } else {
             return redirect('/');
         }
     }

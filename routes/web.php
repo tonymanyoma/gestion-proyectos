@@ -31,8 +31,6 @@ Route::prefix('auth')->group(function () {
 
         //Dashboard
         Route::get('infoDashboardAdmin', 'DashboardController@infoDashboardAdmin');
-        Route::get('infoDashboardAlumno', 'DashboardController@infoDashboardAlumno');
-
 
         //Usuarios
         Route::resource('usuarios', 'UsuarioController');

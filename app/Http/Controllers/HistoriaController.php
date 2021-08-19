@@ -15,14 +15,13 @@ class HistoriaController extends Controller
      */
     public function index(Request $request)
     {
-         
     }
 
     public function getHistorias(Request $request)
     {
-         // obtener historias
+        // obtener historias
 
-         if ($request->wantsJson()) {
+        if ($request->wantsJson()) {
 
 
             try {
@@ -165,7 +164,6 @@ class HistoriaController extends Controller
             $historia->id_estado = 2;
 
             $historia->save();
-            
         } else {
             return redirect('/');
         }

@@ -63,7 +63,6 @@ export default new Router({
             props: true
         },
 
-
         {
             path: "/configuracion",
             name: "configuracion",
