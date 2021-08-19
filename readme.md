@@ -40,8 +40,8 @@
     - php artisan jwt:secret
     - php artisan config:cache
     - php artisan cache:clear
-    - php artisan view:clear  
-
+    - php artisan view:clear 
+ 
 7. Ejecutar el proyecto con el comando php artisan serve 
 
 8. para crear una cuenta se debe hacer click en la opción "¿No tienes una cuenta? Regístrate",
