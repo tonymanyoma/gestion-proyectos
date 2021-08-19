@@ -77,10 +77,8 @@ Vue.component(
 Vue.component("e404", require("./components/E404.vue").default);
 
 Vue.component("dashboard", require("./views/Dashboard.vue").default);
-Vue.component("usuarios", require("./views/Usuarios.vue").default);
 Vue.component("proyectos", require("./views/Proyectos.vue").default);
 Vue.component("historias", require("./views/Historias.vue").default);
-Vue.component("tickets", require("./views/Tickets.vue").default);
 
 Vue.component("configuracion", require("./views/Configuracion.vue").default);
 Vue.component("login", require("./views/Login.vue").default);

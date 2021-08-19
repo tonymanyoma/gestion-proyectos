@@ -6,6 +6,7 @@ use App\Ciudad;
 use App\Curso;
 use App\Detalle_matricula_curso;
 use App\Matricula_curso;
+use App\Proyecto;
 use App\Usuario;
 use Illuminate\Http\Request;
 use Auth;
@@ -27,17 +28,16 @@ class DashboardController extends Controller
     {
         if ($request->wantsJson()) {
 
-            $TotalCursos = Curso::where('id_estado', '=', 1)->count();
+            $id_compania = Auth::user()->id_compania;
 
-            $TotalUsuarios = Usuario::where('id_estado', '=', 1)->count();
-
-            $TotalMatriculas = Matricula_curso::where('id_estado', '=', 1)->count();
+            $TotalProyectos = Proyecto::where('id_estado', '=', 1)
+                                ->where('id_compania', $id_compania)
+                                ->count();
 
             return response()->json([
                 'status' => 'success',
-                'TotalCursos' => $TotalCursos,
-                'TotalUsuarios' => $TotalUsuarios,
-                'TotalMatriculas' => $TotalMatriculas,
+                'TotalProyectos' => $TotalProyectos,
+
 
             ], 200);
         } else {

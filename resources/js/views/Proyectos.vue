@@ -75,7 +75,7 @@
                         </vs-td>
 
                         <vs-td>
-                         <router-link :to="{name: 'historias', params: {id: data[indextr].id}}">
+                         <router-link :to="{name: 'historias', params: {id: data[indextr].id, nombre: data[indextr].nombre, descripcion: data[indextr].descripcion}}">
                         <vs-button
                             radius
                             color="primary"

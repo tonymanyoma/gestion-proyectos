@@ -12,9 +12,17 @@ class EstadoTicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->wantsJson()){
+
+            $estados = Estado_ticket::select('id', 'nombre')
+            ->orderBy('id', 'asc')->get();
+
+            return ['estados' => $estados];
+        }else{
+            return redirect('/');
+        }
     }
 
     /**

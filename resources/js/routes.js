@@ -8,10 +8,8 @@ import e404 from "./components/E404";
 
 import dashboard from "./views/Dashboard";
 
-import usuarios from "./views/Usuarios";
 import proyectos from "./views/Proyectos";
 import historias from "./views/Historias";
-import tickets from "./views/Tickets";
 
 import configuracion from "./views/Configuracion";
 import login from "./views/Login";
@@ -56,32 +54,13 @@ export default new Router({
         },
 
         {
-            path: "/historias/:id",
+            path: ":id",
             name: "historias",
             component: historias,
             meta: {
                 auth: true
             },
             props: true
-        },
-
-        {
-            path: "/usuario",
-            name: "usuarios",
-            component: usuarios,
-            meta: {
-                auth: true
-            },
-            beforeEnter: (to, from, next) => {
-                const authUser = JSON.parse(
-                    window.localStorage.getItem("lbUser")
-                );
-                if (authUser.data.id_role === 1) {
-                    next();
-                } else {
-                    next("/configuracion");
-                }
-            }
         },
 
 

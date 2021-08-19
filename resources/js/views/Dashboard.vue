@@ -1,7 +1,6 @@
 <template>
   <div>
     <dashboardAdmin v-if="this.rol_user == 1"></dashboardAdmin>
-    <dashboardAlumno v-if="this.rol_user == 2"></dashboardAlumno>
   </div>
 </template>
 
@@ -13,7 +12,7 @@ import { misMixins } from "../mixins.js";
 
 //import dashboards
 import dashboardAdmin from "./dashboards/dashboardAdmin.vue";
-import dashboardAlumno from "./dashboards/dashboardAlumno.vue";
+
 
 export default {
   created: function () {
@@ -21,7 +20,7 @@ export default {
   },
   components: {
     dashboardAdmin,
-    dashboardAlumno,
+
   },
   data() {
     return {

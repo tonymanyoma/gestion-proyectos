@@ -11,37 +11,198 @@
         </div>
       </div>
 
-      <!-- Main content -->
       <section class="content">
-        <div class="row">
-          <div class="col-12 col-lg-12">
-            <vs-card>
-              <div slot="header">
-                <div class="row">
-                  <div class="col-md-6">
-                    <vs-button
-                      color="#08b4e0"
-                      type="filled"
-                      data-toggle="modal"
-                      class="font-title"
-                      data-target="#create"
-                      >Nuevo</vs-button
-                    >
+
+            <div class="row">
+                <div class="col-md-12">
+            <form  method="POST" v-on:submit.prevent="updateUsuario" >
+                <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">{{this.nombre}}</h3>
+              </div>
+              <div class="card-body">
+
+                 <div class="box card-inverse bg-img" style="background-image: url(../images/proyecto.jpg); padding-top: 150px">
+
+              <div class="flexbox align-items-center px-20" data-overlay="4">
+                <div class="flexbox align-items-center mr-auto">
+                  <a href="#" >
+                    
+                  </a>
+                  <div class="pl-10 d-none d-md-block">
+
                   </div>
+                </div>
+
+
+              </div>
+            </div>
+
+                
+
+          <div class="row">
+              <div class="col-md-12">
+                  <p class="comentarios-historias">{{ this.descripcion}}</p>
+              </div>
+            </div>
+
+
+              </div>
+        
+
+              <!-- /.card-body -->
+            </div>
+            </form>
+            </div>
+
+
+
+            </div>
+
+        </section>
+
+       <vs-row vs-justify="center">
+            <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="3" v-for="historia in Historias" v-bind:key="historia.id" class="cards-historias">
+            <vs-card class="cardx">
+                <div slot="header">
+                <h3>
+                    Nombre de la historia: {{ historia.nombre }}
+                </h3>
+                </div>
+                <div slot="media">
+                <img  />
+                </div>
+                <div>
+                    <span class="comentarios-historias">Comentarios: {{ historia.comentarios}}</span>
+                </div>
+  
+                <br>
+
+                <div slot="footer">
+                <vs-row vs-justify="flex-end">
+                    <vs-button color="primary" icon="sticky_note_2" v-on:click.prevent="getTickets(historia.id)"></vs-button>
+                    <vs-button color="warning" icon="edit" v-on:click.prevent="editHistorias(historia)"></vs-button>
+                    <vs-button color="danger"  icon="delete" v-on:click.prevent="deleteHistorias(historia)"></vs-button>
+                </vs-row>
+                </div>
+            </vs-card>
+            </vs-col>
+   
+  </vs-row>
+
+    <div class="adminActions" data-target="#create" data-toggle="modal">
+            <input type="checkbox" name="adminToggle" class="adminToggle" />
+            <a class="adminButton" href="#!" ><i class="fa fa-plus"></i></a>
+        </div>
+
+    </div>
+
+  
+      <!-- Modal -->
+      <div
+        class="modal fade bs-example-modal-lg"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myLargeModalLabel"
+        aria-hidden="true"
+        style="display: none"
+        id="createtickets"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header bg-info">
+              <h5 class="modal-title">Tickets</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <h2>Crear tickets</h2>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col-md-12">
+                <div class="col s12">
+                  <div class="form-group row">
+                    <div class="col-md-4">
+                      <label for="nombre">Nombre Ticket</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"
+                            ><i class="fa fa-user"></i
+                          ></span>
+                        </div>
+                        <input
+                          id="nombre"
+                          type="text"
+                          class="form-control"
+                          v-model="newnombreticket"
+                          required
+                        />
+                      </div>
+                      <!-- /.input group -->
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="comentarios">Comentarios</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"
+                            ><i class="fa fa-id-card"></i
+                          ></span>
+                        </div>
+                        <textarea
+                          id="comentarios"
+                          type="text"
+                          class="form-control"
+                          v-model="newcomentariosticket"
+                          required
+                        />
+                      </div>
+                      <!-- /.input group -->
+                    </div>
+                    <div class="col-md-2" style="margin-top:15px">
+                       <button
+                        type="submit"
+                        class="
+                          btn btn-bold btn-pure btn-success
+                          float-right
+                          btn-rounded
+                        "
+                        @click="createTickets()"
+                      >
+                        Crear
+                      </button>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+
+
+                
+                    <div class="row">
+                    <div class="col s12">
+                      
+                      <h2>Tickets de la historia</h2>
+                     
+                    </div>
+                  </div>
+                  
+                                 
+                     <div class="row">
+                <div class="col s12">
                   <vs-table
                     @search="handleSearch"
                     @change-page="handleChangePage"
                     @sort="handleSort"
-                    v-model="selected"
+                    v-model="selectedTicket"
                     pagination
-                    max-items="8"
+                    max-items="5"
                     search
-                    :data="Proyectos"
+                    :data="Tickets"
                   >
                     <template slot="header"> </template>
                     <template slot="thead">
@@ -49,11 +210,11 @@
                         <p class="p-th">Nombre</p>
                       </vs-th>
                       <vs-th sort-key="intensidad">
-                        <p class="p-th">Descripción</p>
+                        <p class="p-th">Comentarios</p>
                       </vs-th>
 
                       <vs-th sort-key="accion">
-                        <p class="p-th">Acción</p>
+                        <p class="p-th">Estado</p>
                       </vs-th>
                     </template>
 
@@ -68,50 +229,64 @@
                         </vs-td>
 
                         <vs-td
-                          :data="data[indextr].descripcion"
+                          :data="data[indextr].comentarios"
                           class="table-td"
                         >
-                          {{ data[indextr].descripcion }}
+                          {{ data[indextr].comentarios }}
+                        </vs-td>
+
+                        <vs-td
+                          :data="data[indextr].estado"
+                          class="table-td"
+                        >
+                          {{ data[indextr].estado }}
+                          <template slot="edit">
+                          
+
+
+                      <div class="form-group">
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-info border-info"><i class="fa fa-briefcase"></i></span>
+                            </div>
+                            <select class="custom-select" v-model="estado" required @change="updateTicket">
+                                <option value="" disabled>Estado</option>
+                                <option v-for="estado in Estados" :key="estado.id" :value="estado.nombre" >{{estado.nombre}}</option>
+                                </select>
+                            </div>
+                          </div>
+
+                          </template>
                         </vs-td>
 
                         <vs-td>
-                         <router-link :to="{name: 'historias', params: {id: data[indextr].id}}">
-                        <vs-button
-                            radius
-                            color="primary"
-                            color-text="rgb(50,50,50)"
-                            icon="description"
-                          ></vs-button>
-                         </router-link>
-                          &nbsp;&nbsp;
-                          <vs-button
-                            radius
-                            color="warning"
-                            color-text="rgb(50,50,50)"
-                            icon="edit"
-                            v-on:click.prevent="editProyectos(data[indextr])"
-                          ></vs-button>
-                          &nbsp;&nbsp;
-                          <vs-button
-                            radius
-                            color="danger"
-                            color-text="rgb(50,50,50)"
-                            icon="delete"
-                           v-on:click.prevent="deleteProyectos(data[indextr])"
-                          ></vs-button>
+
                         </vs-td>
                       </vs-tr>
                     </template>
                   </vs-table>
                 </div>
               </div>
-            </vs-card>
+ 
+            </div>
+
+            <div class="modal-footer modal-footer-uniform">
+              <button
+                type="button"
+                class="btn btn-bold btn-pure btn-secondary btn-rounded"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
+
+            </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+      <!-- /.modal -->
+ 
 
-    <form method="POST" v-on:submit.prevent="createProyectos">
+    <form method="POST" v-on:submit.prevent="createHistorias">
       <!-- Modal -->
       <div
         class="modal fade bs-example-modal-lg"
@@ -125,7 +300,7 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header bg-info">
-              <h5 class="modal-title">Nuevo Proyecto</h5>
+              <h5 class="modal-title">Crear historia</h5>
               <button type="button" class="close" data-dismiss="modal">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -135,7 +310,7 @@
                 <div class="col s12">
                   <div class="form-group row">
                     <div class="col-md-4">
-                      <label for="nombre">Nombre Proyecto</label>
+                      <label for="nombre">Nombre Historia</label>
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text"
@@ -154,7 +329,7 @@
                     </div>
 
                     <div class="col-md-6">
-                      <label for="descripcion">Descripción</label>
+                      <label for="comentarios">Comentarios</label>
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text"
@@ -162,10 +337,10 @@
                           ></span>
                         </div>
                         <textarea
-                          id="descripcion"
+                          id="comentarios"
                           type="text"
                           class="form-control"
-                          v-model="newdescripcion"
+                          v-model="newcomentarios"
                           required
                         />
                       </div>
@@ -201,7 +376,7 @@
       <!-- /.modal -->
     </form>
 
-    <form method="POST" v-on:submit.prevent="updateProyectos(fillproyectos.id)">
+    <form method="POST" v-on:submit.prevent="updateHistoria(fillhistorias.id)">
       <!-- Modal -->
       <div
         class="modal fade bs-example-modal-lg"
@@ -215,7 +390,7 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header bg-info">
-              <h5 class="modal-title">Editar Proyecto</h5>
+              <h5 class="modal-title">Editar Historia</h5>
               <button type="button" class="close" data-dismiss="modal">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -225,7 +400,7 @@
                 <div class="col s12">
                   <div class="form-group row">
                     <div class="col-md-4">
-                      <label for="edit-nombre">Nombre Proyecto</label>
+                      <label for="edit-nombre">Nombre Historia</label>
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text"
@@ -236,7 +411,7 @@
                           id="edit-nombre"
                           type="text"
                           class="form-control"
-                          v-model="fillproyectos.nombre"
+                          v-model="fillhistorias.nombre"
                           required
                           title="Ingrese sólo Letras"
                         />
@@ -245,7 +420,7 @@
                     </div>
 
                     <div class="col-md-6">
-                      <label for="edit-descripcion">Descripción</label>
+                      <label for="edit-descripcion">Comentarios</label>
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text"
@@ -256,7 +431,7 @@
                           id="edit-descripcion"
                           type="text"
                           class="form-control"
-                          v-model="fillproyectos.descripcion"
+                          v-model="fillhistorias.comentarios"
                           required
                         />
                       </div>
@@ -301,30 +476,38 @@ import { misMixins } from "../mixins.js";
 export default {
   created: function () {
     this.$emit("update:layout", LayoutDefault);
-
-    // this.getProyectos();
-    console.log(this.id)
+    this.getHistorias();
+    this.getEstados();
   },
 
-  props:['id'],
+  props:['id', 'nombre', 'descripcion'],
 
   data() {
     return {
-      Proyectos: [],
+      Historias: [],
+      Tickets: [],
       selected: [],
+      selectedTicket: [],
       newnombre: "",
-      newdescripcion: "",
-      fillproyectos: {
+      newcomentarios: "",
+      newnombreticket: "",
+      newcomentariosticket: "",
+      id_historia: '',
+      estado: '',
+      id_ticket: '',
+      fillhistorias: {
         id: "",
         nombre: "",
-        descripcion: "",
+        comentario: "",
       },
+    estados: []
     };
   },
 
   mixins: [misMixins],
 
   methods: {
+
     handleSearch(searching) {
       let _print = `The user searched for: ${searching}\n`;
       this.$refs.pre.appendChild(document.createTextNode(_print));
@@ -337,17 +520,21 @@ export default {
       let _print = `the user ordered: ${key} ${active}\n`;
       this.$refs.pre.appendChild(document.createTextNode(_print));
     },
-
-    getProyectos() {
+    
+    getHistorias() {
       this.spinnerOpen();
 
       let me = this;
       this.$http({
-        url: "auth/proyectos",
-        method: "GET",
+        url: "auth/getHistorias",
+        method: "POST",
+        data:{
+            id_proyecto: this.id
+        }
       })
         .then(function (response) {
-          (me.Proyectos = response.data), me.spinnerClose();
+          (me.Historias = response.data), me.spinnerClose();
+          
         })
         .catch(function (error) {
           // handle error
@@ -355,28 +542,129 @@ export default {
         });
     },
 
-    editProyectos(proyecto) {
-      this.fillproyectos.id = proyecto.id;
-      this.fillproyectos.nombre = proyecto.nombre;
-      this.fillproyectos.descripcion = proyecto.descripcion;
+    getTickets(id_historia) {
+      this.id_historia = id_historia
+      let me = this;
+      this.$http({
+        url: "auth/getTickets",
+        method: "POST",
+        data:{
+            id_historia: id_historia
+        }
+      })
+        .then(function (response) {
+          (me.Tickets = response.data), me.spinnerClose();
+          $("#createtickets").modal("show");
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    },
+
+    getEstados() {
+
+      let me = this;
+      this.$http({
+        url: "auth/estados",
+        method: "GET",
+      })
+        .then(function (response) {
+          (me.Estados = response.data.estados), me.spinnerClose();
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    },
+
+    createTickets(){
+
+      this.loadingOpen();
+
+      let me = this;
+
+      this.$http({
+        url: "auth/tickets",
+        method: "POST",
+        data: {
+          nombre: this.newnombreticket,
+          comentarios: this.newcomentariosticket,
+          id_historia: this.id_historia
+        },
+      })
+        .then((response) => {
+          me.getTickets(me.id_historia);
+          me.$swal("Creado", "ticket creado con éxito.", "success");
+          me.newnombreticket = "";
+          me.newcomentariosticket = "";
+
+        })
+        .catch((error) => {
+          
+        });
+
+    },
+
+
+    updateTicket(){
+
+
+        this.loadingOpen();
+
+        var estado;
+
+        if( this.estado == 'Activo'){
+            estado = 1;
+        }else if( this.estado == 'En proceso' ){
+          estado = 2;
+        }else if( this.estado == 'Finalizado' ){
+          estado = 3;
+        }
+
+      let me = this;
+      this.$http({
+        url: "auth/updateTickets",
+        method: "POST",
+        data: {
+          estado: estado,
+          id_ticket: this.selectedTicket.id
+        },
+      })
+        .then((response) => {
+          this.getTickets(this.id_historia);
+          this.estado = '';
+          this.errors = [];
+
+          this.$swal("Actualizado", "estado del ticket actualizado con éxito.", "success");
+        })
+        .catch((error) => {
+          this.errors = errors.response.data;
+        });
+    },
+
+    editHistorias(historia) {
+      this.fillhistorias.id = historia.id;
+      this.fillhistorias.nombre = historia.nombre;
+      this.fillhistorias.comentarios = historia.comentarios;
 
       $("#edit").modal("show");
     },
 
-    updateProyectos(id) {
+    updateHistoria(id) {
       this.loadingOpen();
 
       let me = this;
       this.$http({
-        url: "auth/proyectos/" + id,
+        url: "auth/historias/" + id,
         method: "PUT",
         data: {
-          nombre: this.fillproyectos.nombre,
-          descripcion: this.fillproyectos.descripcion,
+          nombre: this.fillhistorias.nombre,
+          comentarios: this.fillhistorias.comentarios,
         },
       })
         .then((response) => {
-          this.getProyectos();
+          this.getHistorias();
           this.errors = [];
 
           $("#edit").modal("hide");
@@ -384,29 +672,30 @@ export default {
             $("body").removeClass("modal-open");
             $(".modal-backdrop").remove();
           }
-          this.$swal("Actualizado", "proyecto actualizado con éxito.", "success");
+          this.$swal("Actualizado", "historia actualizada con éxito.", "success");
         })
         .catch((error) => {
           this.errors = errors.response.data;
         });
     },
 
-    createProyectos() {
+    createHistorias() {
       this.loadingOpen();
 
       this.$http({
-        url: "auth/proyectos",
+        url: "auth/historias",
         method: "POST",
         data: {
           nombre: this.newnombre,
-          descripcion: this.newdescripcion,
+          comentarios: this.newcomentarios,
+          id_proyecto: this.id
         },
       })
         .then((response) => {
-          this.getProyectos();
+          this.getHistorias();
 
-          this.nombre = "";
-          this.newdescripcion = "";
+          this.newnombre = "";
+          this.newcomentarios = "";
 
           this.errors = [];
           $("#create").modal("hide");
@@ -415,16 +704,16 @@ export default {
             $(".modal-backdrop").remove();
           }
 
-          this.$swal("Creado", "proyecto creado con éxito.", "success");
+          this.$swal("Creado", "historia creada con éxito.", "success");
         })
         .catch((error) => {
           console.log(error.response.data);
         });
     },
 
-    deleteProyectos(proyecto) {
+    deleteHistorias(historia) {
       this.$swal({
-        title: "Está seguro de Eliminar este proyecto?",
+        title: "Está seguro de Eliminar este historia?",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#00BFF3",
@@ -440,14 +729,14 @@ export default {
           this.loadingOpen();
 
           this.$http({
-            url: "auth/proyectos/" + proyecto.id,
+            url: "auth/historias/" + historia.id,
             method: "DELETE",
           })
             .then((response) => {
-              this.getProyectos();
+              this.getHistorias();
               this.$swal(
                 "Eliminado!",
-                "El proyecto ha sido Eliminado con éxito.",
+                "La historia ha sido Eliminada con éxito.",
                 "success"
               );
             })
@@ -489,4 +778,96 @@ td {
   font-family: body;
   font-size: 13px;
 }
+
+/* Floating button */
+.adminActions {
+  position: fixed;
+  bottom: 35px; right: 35px;
+}
+
+  .adminButton {
+    height: 60px;
+    width: 60px;
+    background-color: #31b1dd;
+    border-radius: 50%;
+    display: block;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+    .adminButton i {
+      font-size: 22px;
+    }
+
+  .adminButtons {
+    position: absolute;
+    width: 100%;
+    bottom: 120%;
+    text-align: center;
+  }
+
+    .adminButtons a {
+      display: block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      text-decoration: none;
+      margin: 10px auto 0;
+      line-height: 1.15;
+      color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      position: relative;
+      box-shadow: 0 0 5px 1px rgba(51, 51, 51, .3);
+    }
+
+      .adminButtons a:hover {
+        transform: scale(1.05);
+      }
+
+      .adminButtons a:nth-child(1) {background-color: #2b3f7f; transition: opacity .2s ease-in-out .3s, transform .15s ease-in-out;}
+      .adminButtons a:nth-child(2) {background-color: #fbb03b; transition: opacity .2s ease-in-out .25s, transform .15s ease-in-out;}
+     
+
+      .adminActions a i {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+  .adminToggle {
+    -webkit-appearance: none;
+    position: absolute;
+    border-radius: 50%;
+    top: 0; left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    z-index: 2;
+    transition: box-shadow .2s ease-in-out;
+    box-shadow: 0 3px 5px 1px rgba(51, 51, 51, .3);
+  }
+
+    .adminToggle:hover {
+      box-shadow: 0 3px 6px 2px rgba(51, 51, 51, .3);
+    }
+
+    .adminToggle:checked ~ .adminButtons a {
+      opacity: 1;
+      visibility: visible;
+    }
+
+ .cards-historias{
+   margin-right: 15px;
+ }   
+
+ .comentarios-historias{
+   font-size: 15px;
+ }
 </style>
