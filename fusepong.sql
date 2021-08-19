@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-08-2021 a las 18:00:56
+-- Tiempo de generación: 19-08-2021 a las 19:15:53
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.2.32
 
@@ -232,9 +232,25 @@ CREATE TABLE `tickets` (
 
 INSERT INTO `tickets` (`id`, `nombre`, `id_historia`, `id_estado`, `id_estado_ticket`, `comentarios`, `created_at`, `updated_at`) VALUES
 (1, 'crear interfaz del modulo de productos', 1, 1, 2, 'crear interfaz del modulo de productos', NULL, NULL),
-(5, 'listar productos', 1, 1, 2, 'listar productos de forma ascendente', '2021-08-19 15:18:49', '2021-08-19 15:23:43'),
+(5, 'listar productos', 1, 1, 2, 'listar productos de forma ascendente', '2021-08-19 15:18:49', '2021-08-19 16:20:33'),
 (6, 'crear productos', 1, 1, 3, 'crear productos', '2021-08-19 15:43:42', '2021-08-19 15:44:17'),
-(7, 'importar productos', 1, 1, 3, 'importar productos desde excel', '2021-08-19 15:44:05', '2021-08-19 15:44:12');
+(7, 'importar productos', 1, 1, 3, 'importar productos desde excel', '2021-08-19 15:44:05', '2021-08-19 15:44:12'),
+(8, 'listar clientes', 3, 1, 3, 'ver listado de clientes', '2021-08-19 17:01:08', '2021-08-19 17:02:14'),
+(9, 'crear clientes', 3, 1, 3, 'crear clientes', '2021-08-19 17:01:21', '2021-08-19 17:02:10'),
+(10, 'editar clientes', 3, 1, 2, 'editar clientes', '2021-08-19 17:01:34', '2021-08-19 17:02:21'),
+(11, 'eliminar clientes', 3, 1, 2, 'eliminar clientes', '2021-08-19 17:01:46', '2021-08-19 17:02:18'),
+(12, 'listar ventas', 2, 1, 2, 'listar las ventas creadas', '2021-08-19 17:02:50', '2021-08-19 17:04:38'),
+(13, 'generar factura', 2, 1, 3, 'generar la factura correspondiente a cada venta', '2021-08-19 17:03:14', '2021-08-19 17:04:26'),
+(14, 'crear venta', 2, 1, 3, 'crear venta y descontar producto del stock', '2021-08-19 17:03:55', '2021-08-19 17:04:20'),
+(15, 'anular factura', 2, 1, 2, 'anular factura', '2021-08-19 17:04:13', '2021-08-19 17:04:32'),
+(16, 'vincular pasarella', 6, 1, 3, 'vincular pasarella', '2021-08-19 17:07:09', '2021-08-19 17:08:20'),
+(17, 'implementar el metodo de pago por tarjeta', 6, 1, 3, 'implementar el metodo de pago por tarjeta', '2021-08-19 17:07:36', '2021-08-19 17:08:26'),
+(18, 'implementar el metodo de pago por pse', 6, 1, 2, 'implementar el metodo de pago por pse', '2021-08-19 17:07:52', '2021-08-19 17:08:29'),
+(19, 'realizar pruebas', 6, 1, 2, 'realizar pruebas', '2021-08-19 17:08:14', '2021-08-19 17:08:34'),
+(20, 'listar productos', 5, 1, 3, 'listar productos', '2021-08-19 17:09:11', '2021-08-19 17:15:30'),
+(21, 'mostrar stock restante', 5, 1, 2, 'mostrar stock restante', '2021-08-19 17:12:18', '2021-08-19 17:15:43'),
+(22, 'ajustar diseño de la foto del producto', 5, 1, 3, 'ajustar diseño de la foto del producto', '2021-08-19 17:12:49', '2021-08-19 17:15:36'),
+(23, 'ajustar card del producto', 5, 1, 2, 'ajustar card del producto', '2021-08-19 17:15:23', '2021-08-19 17:15:40');
 
 -- --------------------------------------------------------
 
@@ -446,7 +462,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_documentos`

@@ -42,10 +42,12 @@
     - php artisan cache:clear
     - php artisan view:clear  
 
-7. para crear una cuenta se debe hacer click en la opción "¿No tienes una cuenta? Regístrate",
+7. Ejecutar el proyecto con el comando php artisan serve 
+
+8. para crear una cuenta se debe hacer click en la opción "¿No tienes una cuenta? Regístrate",
 ubicada en la parte inferior del botón de iniciar sesión.
 
-8. La base de datos ya cuenta con unos usuarios de prueba los cuales son: 
+9. La base de datos ya cuenta con unos usuarios de prueba los cuales son: 
 - antony@email.com contraseña: 123456
 - juan@email.com contraseña: 123456
 
